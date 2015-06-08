@@ -1,0 +1,224 @@
+[
+  {
+    "model": "confNetwork.datacenter",
+    "pk": 1,
+    "fields": {
+      "name": "Brussels"
+    }
+  },
+  {
+    "model": "confNetwork.datacenter",
+    "pk": 2,
+    "fields": {
+      "name": "Amsterdam"
+    }
+  },
+  {
+    "model": "confNetwork.vlan",
+    "pk": 1,
+    "fields": {
+      "name": "VLAN210",
+      "number": 210,
+      "datacenter": 1
+    }
+  },
+  {
+    "model": "confNetwork.vlan",
+    "pk": 2,
+    "fields": {
+      "name": "VLAN211",
+      "number": 211,
+      "datacenter": 1
+    }
+  },
+  {
+    "model": "confNetwork.vlan",
+    "pk": 3,
+    "fields": {
+      "name": "VLAN310",
+      "number": 310,
+      "datacenter": 1
+    }
+  },
+  {
+    "model": "confNetwork.vlan",
+    "pk": 4,
+    "fields": {
+      "name": "VLAN311",
+      "number": 311,
+      "datacenter": 1
+    }
+  },
+  {
+    "model": "confNetwork.vlangroup",
+    "pk": 1,
+    "fields": {
+      "name": "front-end",
+      "datacenter": 1
+    }
+  },
+  {
+    "model": "confNetwork.vlangroup",
+    "pk": 2,
+    "fields": {
+      "name": "back-end",
+      "datacenter": 1
+    }
+  },
+  {
+    "model": "confNetwork.vlangroupcontainsvlans",
+    "pk": 1,
+    "fields": {
+      "vlanGroup": 1,
+      "vlan": 1
+    }
+  },
+  {
+    "model": "confNetwork.vlangroupcontainsvlans",
+    "pk": 2,
+    "fields": {
+      "vlanGroup": 1,
+      "vlan": 2
+    }
+  },
+  {
+    "model": "confNetwork.vlangroupcontainsvlans",
+    "pk": 3,
+    "fields": {
+      "vlanGroup": 2,
+      "vlan": 3
+    }
+  },
+  {
+    "model": "confNetwork.vlangroupcontainsvlans",
+    "pk": 4,
+    "fields": {
+      "vlanGroup": 2,
+      "vlan": 4
+    }
+  },
+  {
+    "model": "confNetwork.device",
+    "pk": 1,
+    "fields": {
+      "name": "easw00001",
+      "brand": "Juniper",
+      "type": "EX9200",
+      "os": "Junos 13.2R7",
+      "ip": "10.103.16.10",
+      "username": "admin",
+      "password": "admin",
+      "datacenter": 1
+    }
+  },
+  {
+    "model": "confNetwork.device",
+    "pk": 2,
+    "fields": {
+      "name": "easw00002",
+      "brand": "Juniper",
+      "type": "EX9200",
+      "os": "Junos 13.2R7",
+      "ip": "10.103.16.20",
+      "username": "admin",
+      "password": "admin",
+      "datacenter": 1
+    }
+  },
+  {
+    "model": "confNetwork.devicecontainsvlans",
+    "pk": 1,
+    "fields": {
+      "device": 1,
+      "vlan": 1
+    }
+  },
+  {
+    "model": "confNetwork.devicecontainsvlans",
+    "pk": 2,
+    "fields": {
+      "device": 1,
+      "vlan": 2
+    }
+  },
+  {
+    "model": "confNetwork.devicecontainsvlans",
+    "pk": 3,
+    "fields": {
+      "device": 1,
+      "vlan": 3
+    }
+  },
+  {
+    "model": "confNetwork.devicecontainsvlans",
+    "pk": 4,
+    "fields": {
+      "device": 1,
+      "vlan": 4
+    }
+  },
+  {
+    "model": "confNetwork.devicecontainsvlans",
+    "pk": 5,
+    "fields": {
+      "device": 2,
+      "vlan": 1
+    }
+  },
+  {
+    "model": "confNetwork.devicecontainsvlans",
+    "pk": 6,
+    "fields": {
+      "device": 2,
+      "vlan": 2
+    }
+  },
+  {
+    "model": "confNetwork.devicecontainsvlans",
+    "pk": 7,
+    "fields": {
+      "device": 2,
+      "vlan": 3
+    }
+  },
+  {
+    "model": "confNetwork.devicecontainsvlans",
+    "pk": 8,
+    "fields": {
+      "device": 2,
+      "vlan": 4
+    }
+  },
+  {
+    "model": "confNetwork.devicecontainsvlangroups",
+    "pk": 1,
+    "fields": {
+      "device": 1,
+      "vlanGroup": 1
+    }
+  },
+  {
+    "model": "confNetwork.devicecontainsvlangroups",
+    "pk": 2,
+    "fields": {
+      "device": 1,
+      "vlanGroup": 2
+    }
+  },
+  {
+    "model": "confNetwork.devicecontainsvlangroups",
+    "pk": 3,
+    "fields": {
+      "device": 2,
+      "vlanGroup": 1
+    }
+  },
+  {
+    "model": "confNetwork.devicecontainsvlangroups",
+    "pk": 4,
+    "fields": {
+      "device": 2,
+      "vlanGroup": 2
+    }
+  }
+]

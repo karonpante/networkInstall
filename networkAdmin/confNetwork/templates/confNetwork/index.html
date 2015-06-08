@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+    {% if datacenters %}
+    <div id="dcs">
+        <label for="select_dcs">Select Datacenter: </label>
+        <select id="select_dcs" name="select_dcs">
+            <option id="dc_none" value="{% url 'index' %}"></option>
+            {% for datacenter in datacenters %}
+                <option id="{{ datacenter.id }}" value="{% url 'index_dc' datacenter.id %}">{{ datacenter.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    {% else %}
+        <p>No datacenters are available.</p>
+    {% endif %}
+    <form id="confnetwork" action="" method="post" name="frm_confnetwork">
+        <div id="vlans">
+            <label for="select_vlans">Existing VLANS: </label><br/>
+            <select id="select_vlans" class="list" size="5" onclick="getVlan()">
+                {% for vlan in vlans %}
+                    <option id="{{ vlan.id }}" class="listItem" value="{{ vlan.id }}">{{ vlan.number }}: {{ vlan.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <button type="submit" name="btn_vlans" value="vlanadd" class="button">Add VLAN</button>
+            <button type="submit" name="btn_vlans" value="vlanedit" class="button">Edit VLAN</button>
+            <button type="submit" name="btn_vlans" value="vlanremove" class="button">Remove VLAN</button>
+        </div>
+        <p></p>
+        <p></p>
+        <div>
+            <button type="submit" name="btn_vlans" value="check" class="button">Check switches</button><br/>
+            <label for="vlans_switch">VLANS on switch</label><br/>
+            <textarea id="vlans_switch" name="vlans_switch">{{ devvlans }} {{ devgroups }}</textarea>
+        </div>
+
+        <div data-role="popup">
+            <form id="confvlans" action="" method="post" name="frm_confvlans">
+                <div>
+                    <table>
+                        <tr>
+                            <td><label for="vlan_id">VLAN ID</label></td>
+                            <td><input id="vlan_id" name="vlan_id" type="text"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="vlan_desc">VLAN Description</label></td>
+                            <td><input id="vlan_desc" name="vlan_description" type="text">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </form>
+
+
+
+    <script language="javascript" type="text/javascript">
+        // OLD and need to be changed
+        function getVlan() {
+            var element = document.getElementById("vlans");
+            var text = element.options[element.selectedIndex].value;
+            document.getElementById("vlans_id").value = text;
+        }
+
+        // Only execute when page is fully loaded
+        $(function(){
+            // Get requested HTTP path to find out which DC is requested and place it on DC element.
+            $("#select_dcs").val("{{ request.path }}");
+
+            // If DC element option is empty then hide the form (when reloading page...)
+            if ($("#select_dcs option:selected").text() == "") {
+                $("#confnetwork").hide();
+            }
+
+            // When the DC option changes, open the correct page (and variables)
+            $("#select_dcs").change(function(){
+                selected_dc_element = $("#select_dcs option:selected").text();
+                document.location.href = $(this).val();
+                if (selected_dc_element != "") {
+                    $("#confnetwork").show();
+                } else {
+                    $("#confnetwork").hide();
+                }
+            });
+
+            // When a vlan is selected, get values in correct elements.
+            $("#select_vlans").change(function(){
+                selected_vlan_element = $("#select_vlans option:selected").val();
+                {% for vlan in vlans %}
+                    if ({{ vlan.id }} == selected_vlan_element) {
+                        $("#vlan_id").val("{{ vlan.number }}");
+                        $("#vlan_desc").val("{{ vlan.name }}");
+                    }
+                {% endfor %}
+            });
+
+
+        });
+    </script>
+</body>
+</html>
